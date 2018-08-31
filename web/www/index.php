@@ -1,3 +1,5 @@
+Hostname: <?=gethostname();?><br/>
+
 <?php
 
 $link = mysqli_connect('db1', getenv('DB1_ENV_MYSQL_USERNAME'), getenv('DB1_ENV_MYSQL_PASSWORD'));
