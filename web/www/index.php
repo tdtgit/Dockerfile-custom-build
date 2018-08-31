@@ -1,8 +1,12 @@
 <?php
 
-$link = mysql_connect('db1', 'env', 'SecurePW123@FromENV');
+$link = mysqli_connect('db1', 'env', 'SecurePW123@FromENV');
 if (!$link) {
-    die('Could not connect: ' . mysql_error());
+    die('Could not connect: ' . mysqli_error());
 }
 echo 'Connected successfully';
-mysql_close($link);
+?>
+
+PHP version: <?=phpversion()?> - MySQL version: <?=mysqli_get_server_info($link)?>
+
+<?php mysqli_close($link); ?>
