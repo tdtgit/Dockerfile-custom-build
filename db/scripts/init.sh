@@ -12,6 +12,7 @@ USERPASS=${MYSQL_PASSWORD:-$(generate_pw)}
 echo "User: $USER / Password: $USERPASS"
 
 DBNAME=${MYSQL_DBNAME:-newdb}
+echo "Created database: $DBNAME"
 
 perl -i -pe "BEGIN{undef $/;} s/^\[mysqld\]$/[mysqld]\n\ndefault-authentication-plugin=mysql_native_password\n/sgm" /etc/my.cnf
 
@@ -25,4 +26,5 @@ mysql -uroot -p$ROOTPASS -e "CREATE DATABASE $DBNAME" && \
 mysql -uroot -p$ROOTPASS -e "CREATE USER '$USER'@'%' IDENTIFIED WITH mysql_native_password BY '$USERPASS'" && \
 # Grant privileges
 mysql -uroot -p$ROOTPASS -e "GRANT ALL PRIVILEGES ON $DBNAME.* TO '$USER'@'%'" && \
+mysql -uroot -p$ROOTPASS -e "flush privileges;" && \
 /bin/bash

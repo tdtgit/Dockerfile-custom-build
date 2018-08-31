@@ -6,4 +6,9 @@ RUN yum install -y pwgen
 RUN yum install -y mysql mysql-community-server
 ADD scripts /scripts
 RUN chmod +x /scripts/*.sh
+
+ENV MYSQL_USERNAME=env \
+    MYSQL_PASSWORD=SecurePW123@FromENV \
+    MYSQL_DBNAME=db_prod
+
 ENTRYPOINT [ "/scripts/init.sh" ]
