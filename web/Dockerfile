@@ -14,6 +14,6 @@ ADD scripts /scripts
 RUN chmod +x /scripts/*.sh
 
 ENV VIRTUAL_HOST=web.local
-    
+
 ENTRYPOINT [ "/scripts/init.sh" ]
 EXPOSE 80
