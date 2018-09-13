@@ -1,5 +1,9 @@
 #!/bin/bash
 
+export $(cat /.env | xargs) && echo "Exporting ENV done"
+
+chown -R apache: /var/www/html
+
 # Change default docker.local hostname to domain
 sed -i "s/docker\.local/$VIRTUAL_HOST/g" /etc/httpd/conf.d/vhosts.conf
 # Start Apache

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export $(cat /.env | xargs)
+
 function generate_pw(){
     pwgen -scny -r "\"'$,[]*?{}~#%\<>|^;" -1 16;
 }

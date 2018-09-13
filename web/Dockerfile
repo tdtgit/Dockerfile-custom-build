@@ -8,12 +8,11 @@ RUN yum-config-manager --enable remi-php72
 
 RUN yum update -y
 RUN yum install -y httpd php-fpm php php-mysql
-COPY vhosts /etc/httpd/conf.d/
-COPY www /var/www/html/
-ADD scripts /scripts
+COPY ./web/vhosts /etc/httpd/conf.d/
+COPY ./web/www /var/www/html/
+ADD ./web/scripts /scripts
 RUN chmod +x /scripts/*.sh
+COPY .env /.env
 
-ENV VIRTUAL_HOST=web.local
-
-ENTRYPOINT [ "/scripts/init.sh" ]
+ENTRYPOINT [ "/bin/bash", "-c", "/scripts/init.sh" ]
 EXPOSE 80
