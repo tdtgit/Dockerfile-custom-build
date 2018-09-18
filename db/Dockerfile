@@ -1,6 +1,5 @@
 FROM centos:7
-RUN yum update -y
-RUN yum install -y epel-release
+RUN yum update -y && yum install -y epel-release
 RUN yum install -y pwgen
 
 RUN rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm

@@ -43,6 +43,10 @@ else
     # Grant privileges
     mysql -uroot -p$ROOTPASS -e "GRANT ALL PRIVILEGES ON $DBNAME.* TO '$USER'@'%'" && \
     mysql -uroot -p$ROOTPASS -e "flush privileges;"
+
+    mysqladmin -u root -p$ROOTPASS shutdown
+
+    mysqld --datadir=/var/lib/mysql --socket=/var/lib/mysql/mysql.sock --user=root
 fi
 
 /bin/bash
