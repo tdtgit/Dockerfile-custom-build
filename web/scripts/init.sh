@@ -1,6 +1,5 @@
 #!/bin/bash
 
-export $(cat /.env | xargs) && echo "Exporting ENV done"
 
 chown -R apache: /var/www/html
 

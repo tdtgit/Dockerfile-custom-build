@@ -17,12 +17,12 @@ RUN yum clean all && \
     yum clean metadata && \
     rm -rf /var/cache/yum
 
-ADD ./db/scripts /scripts
+ADD scripts /scripts
 RUN chmod +x /scripts/*.sh
 
-COPY .env /.env
-    
-VOLUME dbdata
+ENV MYSQL_USERNAME=env \
+    MYSQL_PASSWORD=SecurePW123@FromENV \
+    MYSQL_DBNAME=db_prod
 
 ENTRYPOINT [ "/bin/bash", "-c", "/scripts/init.sh" ]
 EXPOSE 3306
