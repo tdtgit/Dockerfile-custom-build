@@ -13,6 +13,7 @@ COPY www /var/www/html/
 COPY ssl /etc/ssl/
 
 ENV VIRTUAL_HOST=web.local
+ENV SSL=1
 
 ADD scripts /scripts
 RUN chmod +x /scripts/*.sh
@@ -20,3 +21,4 @@ RUN chmod +x /scripts/*.sh
 ENTRYPOINT [ "/bin/bash", "-c", "/scripts/init.sh" ]
 EXPOSE 80
 EXPOSE 443
+
